@@ -36,7 +36,7 @@ const Register = asyncHandler(async (req, res) => {
         .json({ success: false, error: "Invalid email format" });
     }
 
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+      const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
     if (!password || !passwordRegex.test(password)) {
       return res.status(400).json({
         success: false,
