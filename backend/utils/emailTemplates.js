@@ -3,7 +3,7 @@ const bookingConfirmationTemplate = (user, booking) => {
   const bookingTime = new Date(booking.createdAt).toLocaleTimeString();
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e74c3c; border-radius: 5px;">
-      <h2 style="color: #e74c3c;">Gas Agency System - Booking Confirmation</h2>
+      <h2 style="color: #e74c3c;">SafeFlame Gas Agency - Booking Confirmation</h2>
       <p>Hello ${user.name},</p>
       <p>Your gas cylinder booking has been successfully created. Here are the details:</p>
       
@@ -55,7 +55,7 @@ const bookingStatusUpdateTemplate = (user, booking) => {
 
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e74c3c; border-radius: 5px;">
-      <h2 style="color: #e74c3c;">Gas Agency System - Booking Status Update</h2>
+      <h2 style="color: #e74c3c;">SafeFlame Gas Agency - Booking Status Update</h2>
       <p>Hello ${user.name},</p>
       <p>There has been an update to your gas cylinder booking. Here are the details:</p>
       
@@ -88,7 +88,7 @@ const bookingStatusUpdateTemplate = (user, booking) => {
 const accountBalanceTemplate = (user) => {
   return `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e74c3c; border-radius: 5px;">
-        <h2 style="color: #e74c3c;">Gas Agency System - Account Balance</h2>
+        <h2 style="color: #e74c3c;">SafeFlame Gas Agency - Account Balance</h2>
         <p>Hello ${user.name},</p>
         <p>Here is your current account balance information:</p>
         

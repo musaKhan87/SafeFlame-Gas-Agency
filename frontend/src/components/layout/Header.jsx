@@ -52,7 +52,7 @@ return(
   <div className="container header-container">
     <div className="logo">
       <i className="fas fa-fire"></i>
-      <span>Gas Agency {isAdmin ? "Admin" : ""}</span>
+      <span>SafeFlame {isAdmin ? "Admin" : ""}</span>
     </div>
 
     {/* Mobile menu toggle button */}

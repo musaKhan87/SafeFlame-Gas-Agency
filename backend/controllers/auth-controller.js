@@ -88,12 +88,12 @@ const Register = asyncHandler(async (req, res) => {
         await transporter.sendMail({
           from: process.env.EMAIL_USER,
           to: email,
-          subject: "Verify Your Email - Gas Agency System",
+          subject: "Verify Your Email - SafeFlame Gas Agency",
           html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e74c3c; border-radius: 5px;">
-            <h2 style="color: #e74c3c;">Gas Agency System - Email Verification</h2>
+            <h2 style="color: #e74c3c;">SafeFlame Gas Agency - Email Verification</h2>
             <p>Hello ${name},</p>
-            <p>Thank you for registering with our Gas Agency System. Please verify your email address by clicking the button below:</p>
+            <p>Thank you for registering with our SafeFlame Gas Agency. Please verify your email address by clicking the button below:</p>
             <div style="text-align: center; margin: 30px 0;">
               <a href="${verifyURL}" style="background-color: #e74c3c; color: white; padding: 12px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">Verify Email Address</a>
             </div>
@@ -218,10 +218,10 @@ const ResendVerification = asyncHandler(async (req, res) => {
         await transporter.sendMail({
           from: process.env.EMAIL_USER,
           to: email,
-          subject: "Verify Your Email - Gas Agency System",
+          subject: "Verify Your Email - SafeFlame Gas Agency",
           html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e74c3c; border-radius: 5px;">
-                  <h2 style="color: #e74c3c;">Gas Agency System - Email Verification</h2>
+                  <h2 style="color: #e74c3c;">SafeFlame Gas Agency - Email Verification</h2>
                   <p>Hello ${user.name},</p>
                   <p>Please verify your email address by clicking the button below:</p>
                   <div style="text-align: center; margin: 30px 0;">
