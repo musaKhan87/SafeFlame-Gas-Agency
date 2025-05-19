@@ -5,7 +5,7 @@ const nodemailer = require("nodemailer");
 const { User } = require("../models/User");
 
 const JWT_SECRET = process.env.JWT_SECRET;
-const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000"; // frontend URL
+const CLIENT_URL = process.env.CLIENT_URL  // frontend URL
 
 // Nodemailer transporter setup (Use Gmail or any SMTP)
 const transporter = nodemailer.createTransport({
@@ -19,6 +19,44 @@ const transporter = nodemailer.createTransport({
 const Register = asyncHandler(async (req, res) => {
   try {
     const { name, email, password, phone, address } = req.body;
+
+    // Basic validations
+    if (!name || name.length < 4) {
+      return res
+        .status(400)
+        .json({
+          success: false,
+          error: "Name must be at least 4 characters long",
+        });
+    }
+
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      return res
+        .status(400)
+        .json({ success: false, error: "Invalid email format" });
+    }
+
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    if (!password || !passwordRegex.test(password)) {
+      return res.status(400).json({
+        success: false,
+        error:
+          "Password must be at least 6 characters and include both letters and numbers",
+      });
+    }
+
+    if (!phone || phone.length < 10) {
+      return res
+        .status(400)
+        .json({ success: false, error: "Invalid phone number" });
+    }
+
+    if (!address) {
+      return res
+        .status(400)
+        .json({ success: false, error: "Address is required" });
+    }
+
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res

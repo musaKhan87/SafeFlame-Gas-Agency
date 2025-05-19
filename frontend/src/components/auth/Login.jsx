@@ -3,12 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 
-
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [needsVerification, setNeedsVerification] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
 
   const { login, resendVerification, user } = useAuth();
   const navigate = useNavigate();
@@ -103,7 +103,7 @@ function Login() {
   return (
     <div className="auth-container">
       <div className="auth-header">
-        <h2>Login to Gas Agency</h2>
+        <h2>Login</h2>
       </div>
       <form onSubmit={handleSubmit} className="auth-form">
         <div className="form-group">
@@ -118,14 +118,28 @@ function Login() {
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className="input-with-icon">
+            <input
+              type={!showPassword ? "text" : "password"}
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button
+              type="button"
+              className="eye"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              <i
+                className={`fa-solid ${
+                  showPassword ? "fa-eye" : "fa-eye-slash"
+                }`}
+              ></i>
+            </button>
+          </div>
         </div>
+
         <button type="submit" disabled={loading}>
           {loading ? "Logging in..." : "Login"}
         </button>

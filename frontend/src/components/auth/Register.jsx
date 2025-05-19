@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { useNavigate,Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { useAuth } from '../../context/AuthContext';
+import { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAuth } from "../../context/AuthContext";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -12,10 +12,15 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
+
   const [loading, setLoading] = useState(false);
   const [registered, setRegistered] = useState(false);
   const { register, user } = useAuth();
   const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(true);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(true);
+
 
   useEffect(() => {
     if (user) {
@@ -37,7 +42,21 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate passwords match
+    const nameRegex = /^.{4,}$/;
+    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
+   
+    if (!nameRegex.test(formData.name)) {
+      toast.error("Name must be at least 4 characters long");
+      return;
+    }
+
+    if (!passwordRegex.test(formData.password)) {
+      toast.error(
+        "Password must be at least 6 characters and include letters and numbers"
+      );
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       toast.error("Passwords do not match");
       return;
@@ -105,7 +124,7 @@ function Register() {
   return (
     <div className="auth-container">
       <div className="auth-header">
-        <h2>Register for Gas Agency</h2>
+        <h2>Register</h2>
       </div>
       <form onSubmit={handleSubmit} className="auth-form">
         <div className="form-group">
@@ -148,25 +167,52 @@ function Register() {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="form-group password-group">
           <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
+          <div className="input-with-icon">
+            <input
+              type={!showPassword ? "text" : "password"}
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <button
+              type="button"
+              className="eye"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              <i
+                className={`fa-solid ${
+                  showPassword ? "fa-eye" : "fa-eye-slash"
+                }`}
+              ></i>
+            </button>
+          </div>
         </div>
-        <div className="form-group">
+
+        <div className="form-group password-group">
           <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
+          <div className="input-with-icon">
+            <input
+              type={!showConfirmPassword ? "text" : "password"}
+              id="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+            <button
+              type="button"
+              className="eye"
+              onClick={() => setShowConfirmPassword((prev) => !prev)}
+            >
+              <i
+                className={`fa-solid ${
+                  showConfirmPassword ? "fa-eye" : "fa-eye-slash"
+                }`}
+              ></i>
+            </button>
+          </div>
         </div>
         <button type="submit" disabled={loading}>
           {loading ? "Registering..." : "Register"}
@@ -181,5 +227,4 @@ function Register() {
   );
 }
 
-
-export default Register
+export default Register;
