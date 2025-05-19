@@ -220,9 +220,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Musa Khan - Full stack developer - [GitHub](https://github.com/musaKhan87)
 
-## 🙏 Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc.
 \`\`\`
