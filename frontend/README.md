@@ -1,6 +1,8 @@
 # Gas Agency Management System
 
 ![Gas Agency System](https://via.placeholder.com/800x400?text=Gas+Agency+System)
+admin Email:musa@gmail.com
+admin password:musa@123
 
 A comprehensive web application for managing gas cylinder bookings, payments, and deliveries. Built with the MERN stack (MongoDB, Express, React, Node.js).
 
@@ -44,20 +46,20 @@ A comprehensive web application for managing gas cylinder bookings, payments, an
 
 The application is fully responsive and optimized for all device sizes:
 
-### Mobile Devices (< 576px)
+### Mobile Devices 
 - Hamburger menu with slide-in navigation panel
 - Stacked card layouts
 - Optimized tables with horizontal scrolling
 - Simplified forms and inputs
 - Touch-friendly buttons and controls
 
-### Tablets (576px - 992px)
+### Tablets 
 - Adaptive layouts that adjust to screen width
 - Optimized card grids (2 columns)
 - Responsive tables and forms
 - Improved spacing and typography
 
-### Desktops (> 992px)
+### Desktops 
 - Full navigation menu
 - Multi-column layouts
 - Expanded dashboard views
@@ -94,7 +96,7 @@ The application is fully responsive and optimized for all device sizes:
 
 3. **Install client dependencies**
    \`\`\`bash
-   cd client
+   cd frontend
    npm install
    cd ..
    \`\`\`
@@ -113,7 +115,7 @@ The application is fully responsive and optimized for all device sizes:
    JWT_SECRET=your_secret_key_change_in_production
 
    # Client URL
-   CLIENT_URL=http://localhost:3000
+   CLIENT_URL=http://localhost:5173
 
    # Email Configuration
    EMAIL_USER=your-email@gmail.com
@@ -144,30 +146,41 @@ The application is fully responsive and optimized for all device sizes:
 
 \`\`\`
 gas-agency-system/
-├── client/                 # React frontend
-│   ├── public/             # Static files
-│   └── src/
-│       ├── components/     # React components
-│       │   ├── admin/      # Admin components
-│       │   ├── auth/       # Authentication components
-│       │   ├── customer/   # Customer components
-│       │   ├── layout/     # Layout components
-│       │   └── ui/         # UI components
-│       ├── context/        # Context providers
-│       ├── services/       # API services
-│       └── App.js          # Main app component
-├── controllers/            # Route controllers
-├── middleware/             # Express middleware
-├── models/                 # MongoDB models
-├── routes/                 # API routes
-├── utils/                  # Utility functions
-│   ├── cloudinary.js       # Cloudinary configuration
-│   ├── emailService.js     # Email service
-│   └── emailTemplates.js   # Email templates
-├── .env                    # Environment variables
-├── .gitignore              # Git ignore file
-├── package.json            # Project dependencies
-└── server.js               # Express server
+├── backend/                  # Node.js backend
+│   ├── controllers/          # API logic for routes
+│   ├── middleware/           # Custom middleware (auth, error handling, etc.)
+│   ├── models/               # Mongoose data models
+│   ├── routes/               # API route handlers
+│   ├── utils/                # Helper functions (email, cloudinary, etc.)
+│   └── server.js             # Express server entry point
+│
+├── frontend/
+|   ├── src/                      # React source files
+|   │   ├── assets/              # Images, fonts, and static assets
+│   |   ├── components/          # Modular UI components
+│   │   |   ├── admin/           # Admin-specific UI components
+│   │   |   ├── auth/            # Login, registration, verification
+│   │   |   ├── customer/        # Customer-side features
+│   │   |   ├── layout/          # Navbar, sidebar, footer, etc.
+│   │   |   └── ui/              # Shared/reusable UI elements (buttons, modals)
+│   |   ├── context/             # React Context API for global state
+│   |   ├── services/            # API calls using Axios
+│   |   ├── App.css              # Main CSS for App component
+│   |   ├── App.jsx              # Root component containing routes/layout
+│   |   ├── index.css            # Global styles
+│   |   ├── main.jsx             # ReactDOM.render logic
+|   ├── public/                  # Static public files (favicon, etc.)
+|   ├── .gitignore               # Git ignored files
+|   ├── eslint.config.js         # ESLint rules
+|   ├── index.html               # HTML entry point
+|   ├── vite.config.js           # Vite configuration
+|   ├── package.json             # Project metadata and dependencies
+|   ├── package-lock.json        # Exact version locks
+|   ├── README.md                # Project overview
+├── .env                      # Environment variables
+├── package.json              # Project metadata and dependencies 
+└── package-lock.json         # Dependency lock file
+
 \`\`\`
 
 ## 🌐 API Endpoints
@@ -199,74 +212,12 @@ gas-agency-system/
 ### Notifications
 - `GET /api/notifications` - Get all notifications
 
-## 🚀 Deployment
-
-### Deploying to Heroku
-1. Create a Heroku account and install the Heroku CLI
-2. Login to Heroku CLI: `heroku login`
-3. Create a new Heroku app: `heroku create your-app-name`
-4. Add MongoDB add-on or use MongoDB Atlas
-5. Set environment variables in Heroku dashboard
-6. Push to Heroku: `git push heroku main`
-
-### Deploying to Vercel
-1. Create a `vercel.json` file in the root directory:
-   \`\`\`json
-   {
-     "version": 2,
-     "builds": [
-       { "src": "server.js", "use": "@vercel/node" },
-       { "src": "client/build/**", "use": "@vercel/static" }
-     ],
-     "routes": [
-       { "src": "/api/(.*)", "dest": "server.js" },
-       { "src": "/(.*)", "dest": "client/build/$1" }
-     ]
-   }
-   \`\`\`
-2. Build the client: `cd client && npm run build`
-3. Deploy with Vercel CLI: `vercel --prod`
-
-## 🧪 Testing
-
-### Running Tests
-\`\`\`bash
-# Run backend tests
-npm test
-
-# Run frontend tests
-cd client && npm test
-\`\`\`
-
-### Test Coverage
-\`\`\`bash
-# Generate backend test coverage
-npm run test:coverage
-
-# Generate frontend test coverage
-cd client && npm run test:coverage
-\`\`\`
-
-## 🔄 Continuous Integration
-
-The project uses GitHub Actions for continuous integration. Every push to the main branch triggers:
-- Code linting
-- Unit tests
-- Build verification
-
 ## 📝 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 👥 Contributors
 
-- Your Name - Initial work - [YourGitHub](https://github.com/yourusername)
+Musa Khan - Full stack developer - [GitHub](https://github.com/musaKhan87)
 
-## 🙏 Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc.
 \`\`\`
-
-## 3. Let's update the Header component to ensure it works well on all device sizes:
