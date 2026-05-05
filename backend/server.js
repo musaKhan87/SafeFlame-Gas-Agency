@@ -37,6 +37,15 @@ app.use("/api/logs", LogRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/admin", adminRoutes);
 
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    message: "SafeFlame backend is running",
+    uptime: process.uptime(),
+    timestamp: new Date(),
+  });
+});
+
 // ---------------------Deployment----------------
 const __dirname1 = path.resolve();
 
